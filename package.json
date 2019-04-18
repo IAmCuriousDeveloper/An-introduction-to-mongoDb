@@ -1,0 +1,26 @@
+{
+  "name": "an-introduction-to-mongodb",
+  "version": "1.0.0",
+  "description": "a guide for mongodb and javascript users",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cuid": "^2.1.4",
+    "express": "^4.16.4",
+    "mongoose": "^5.3.2",
+    "morgan": "^1.9.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PRASHANTPR7/An-introduction-to-mongoDb.git"
+  },
+  "author": "Prashant Rawal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PRASHANTPR7/An-introduction-to-mongoDb/issues"
+  },
+  "homepage": "https://github.com/PRASHANTPR7/An-introduction-to-mongoDb#readme"
+}
