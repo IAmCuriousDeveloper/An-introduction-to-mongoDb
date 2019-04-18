@@ -39,6 +39,19 @@ connect()
       lastname: "Rawal",
       age: 24
     });
+    //another methods on mongo
+    const found = await Student.find({ firstname: "prashant" }); //takes object argument to find ,for wildcard use {} empty object which return all the students
+    const foundById = await Student.findById("5cb807fa201ded3088d23dad"); //takes id to find if it not able to find then will return null it will never return error
+    const updated = await Student.findByIdAndUpdate(
+      "5cb807fa201ded3088d23dad",
+      { firstname: "PunisheR" },
+      () => {
+        console.log("successsfully updated");
+      }
+    ); //takes id then what property to update then cb function
+    console.log(updated);
+    console.log(foundById);
+    console.log(found);
     console.log(student);
   })
   .catch(e => {
