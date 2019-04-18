@@ -9,10 +9,22 @@ const connect = () => {
 //what is schema? its just a info for our collection that our collection should look like
 //student with lowercase is just a schema
 const student = new mongoose.Schema({
-  firstname: String,
+  firstname: {
+    type: String,
+    required: true,
+    unique: true //required is validate but unique is index
+  },
+  favfoods: [{ type: String }],
+  info: {
+    school: {
+      type: String
+    },
+    hasvehicle: Boolean
+  },
   lastname: String,
   age: Number
 });
+//to add the extra info on schema just provide a object with a detailed info what is the type,required or not etc for validation ,you can also add nested schemas
 
 // now we create model which inturn helps to create a collections model yeild collections
 //1st argument it takes is collection name ,2nd it takes the schema that how collection should look like
