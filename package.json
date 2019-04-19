@@ -4,7 +4,7 @@
   "description": "a guide for mongodb and javascript users",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watch"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -21,6 +21,19 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/PRASHANTPR7/An-introduction-to-mongoDb/issues"
+  },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/",
+    "testEnvironment": "node",
+    "setupTestFrameworkScriptFile": "<rootDir>/testconfig.js",
+    "restoreMocks": true,
+    "testPathIgnorePatterns": [
+      "dist/"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   },
   "homepage": "https://github.com/PRASHANTPR7/An-introduction-to-mongoDb#readme"
 }
