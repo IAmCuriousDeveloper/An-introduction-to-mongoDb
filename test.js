@@ -21,6 +21,11 @@ const student = new mongoose.Schema({
     },
     hasvehicle: Boolean
   },
+  school: {
+    type: mongoose.Schema.Types.ObjectId, //it means its type is _id
+    required: true,
+    ref: "school" //pointing to school collection
+  },
   lastname: String,
   age: Number
 });
@@ -32,16 +37,20 @@ const school = new mongoose.Schema({
   name: String
 });
 
+const School = mongoose.model("school", school);
+
 const Student = mongoose.model("student", student);
 
 //callin the connect function and
 connect()
   .then(async connection => {
-    console.log(connection);
+    //creating school
+    const school = await School.create({ name: "ddm public school" });
     const student = await Student.create({
       firstname: "Prashant",
       lastname: "Rawal",
-      age: 24
+      age: 24,
+      school: school._id
     });
     //another methods on mongo
     const found = await Student.find({ firstname: "prashant" }); //takes object argument to find ,for wildcard use {} empty object which return all the students
@@ -57,7 +66,15 @@ connect()
     console.log(foundById);
     console.log(found);
     console.log(student);
+    const match = await Student.findById(student.id)
+      .populate("school")
+      .exec();
+    console.log(match);
   })
   .catch(e => {
     console.error(e);
   });
+
+//in this we just make relations and association with school and student objects.
+// 1st you have to provide the type property on the object you want to use another object (here school on student schema) then just pass the ref property with value (schema name)
+//we have used the mongoose method populate to populate the student with school property
