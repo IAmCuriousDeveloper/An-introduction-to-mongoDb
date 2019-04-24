@@ -28,6 +28,10 @@ const student = new mongoose.Schema({
 
 // now we create model which inturn helps to create a collections model yeild collections
 //1st argument it takes is collection name ,2nd it takes the schema that how collection should look like
+const school = new mongoose.Schema({
+  name: String
+});
+
 const Student = mongoose.model("student", student);
 
 //callin the connect function and

@@ -2,7 +2,7 @@ const User = require("../user");
 
 describe("User model", () => {
   test("first name must be required", async () => {
-    expect.assertions(1);
+    expect.assertions(1); //this line is catching a failure that should be a failure
 
     try {
       await User.create({
