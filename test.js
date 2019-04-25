@@ -22,7 +22,7 @@ const student = new mongoose.Schema({
     hasvehicle: Boolean
   },
   school: {
-    type: mongoose.Schema.Types.ObjectId, //it means its type is _id
+    type: mongoose.Schema.Types.ObjectId, //it means its type is _id(there is a feild called school and its type is _id)
     required: true,
     ref: "school" //pointing to school collection
   },
