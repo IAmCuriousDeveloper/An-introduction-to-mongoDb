@@ -1,0 +1,3 @@
+set the enviroment variable to run mongo command
+open the server with mongod command 
+open the mongo shell with mongo command 
