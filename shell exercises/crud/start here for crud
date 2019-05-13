@@ -1,0 +1,66 @@
+mongo db defines two operations to insert documents onto the shell 
+==================insertion(create) ===================================
+insertOne({})
+insertMany([{},{}])
+
+==================read=====================================
+db.collection.find({},{}).limit(4);
+
+the 1st argument of find is query criteria 
+2nd is projections (which field you want to see)
+limit is cursor modifier (how many item you want to see)
+
+==========================Update=====================================
+db.collection.updateOne({},{});
+db.collection.updateMany({},{});
+db.collection.replaceOne({},{});
+
+1st para is query criteria
+2nd is update actions (for ex set reset)
+
+============================Delete=============================
+db.collection.deleteOne({}); //it will delete the one which it finds first
+db.collection.deleteMany({});
+just takes one parameter query criteria
+
+//we can also do bulk write ,we will se later
+
+// *we also insert documents in the database with upsert option set to true with many other update and find queries
+
+// Although you can express this query using the $or operator, use the $in operator rather than the $or operator when performing equality checks on the same field.
+
+ex->  db.inventory.find( { status: { $in: [ "A", "D" ] } } );
+
+//we do the and operator like this ,it is used to join the two compound queries
+db.inventory.find( { status: "A", qty: { $lt: 30 } } )
+
+//using or 
+db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
+
+The following methods can also read documents from a collection:
+
+db.collection.findOne
+In aggregation pipeline, the $match pipeline stage provides access to MongoDB queries.
+
+// embedded documents searching documents
+
+suppose this is the documents in the collections
+
+db.inventory.insertMany( [
+   { item: "journal", qty: 25, size: { h: 14, w: 21, uom: "cm" }, status: "A" },
+   { item: "notebook", qty: 50, size: { h: 8.5, w: 11, uom: "in" }, status: "A" },
+   { item: "paper", qty: 100, size: { h: 8.5, w: 11, uom: "in" }, status: "D" },
+   { item: "planner", qty: 75, size: { h: 22.85, w: 30, uom: "cm" }, status: "D" },
+   { item: "postcard", qty: 45, size: { h: 10, w: 15.25, uom: "cm" }, status: "A" }
+]);
+
+this query will match the 1st item coz its in order
+db.inventory.find( { size: { h: 14, w: 21, uom: "cm" } } )
+
+while this doesnot
+db.inventory.find(  { size: { w: 21, h: 14, uom: "cm" } }  ) 
+
+//nested field search 
+db.inventory.find( { "size.uom": "in" } ) //fields should be wrapped in  quotation marks " ";
+
+//query in an array
